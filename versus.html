@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Video Compare Curtain</title>
+<style>
+  :root { --bar-w: 3px; }
+  body { margin: 0; background: #111; color: #eee; font-family: system-ui, sans-serif; }
+  .wrap { max-width: 1280px; margin: 16px auto; padding: 0 12px; }
+  .compare {
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    background: #000; overflow: hidden; user-select: none; touch-action: none;
+    border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.4);
+    /* позиция разделителя в процентах (0..100) */
+    --pos: 50%;
+  }
+  .compare video {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+    background: #000;
+  }
+  /* Режим «шторки»: левое видео видно слева от разделителя, правое — справа */
+  #bottom { clip-path: polygon(0 0, var(--pos) 0, var(--pos) 100%, 0 100%); }
+  #top    { clip-path: polygon(var(--pos) 0, 100% 0, 100% 100%, var(--pos) 100%); }
+
+  /* Вертикальный разделитель */
+  #divider {
+    position: absolute; top: 0; bottom: 0; left: calc(var(--pos) - var(--bar-w) / 2);
+    width: var(--bar-w); background: rgba(255,255,255,.95); cursor: ew-resize;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 0 8px rgba(0,0,0,.6) inset;
+  }
+  /* Ручка по центру разделителя */
+  #knob {
+    position: absolute; top: 50%; left: var(--pos); transform: translate(-50%, -50%);
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(20,20,20,.85); border: 2px solid #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,.5);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="compare" class="compare" aria-label="Сравнение видео: шторка перетаскивается по горизонтали">
+      <!-- Левое (original) -->
+      <video id="bottom" src="original.mp4" autoplay muted loop playsinline></video>
+      <!-- Правое (enhanced) -->
+      <video id="top" src="enhanced.mp4" autoplay muted loop playsinline></video>
+      <div id="divider"></div>
+      <div id="knob" aria-hidden="true"></div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const container = document.getElementById('compare');
+  const divider = document.getElementById('divider');
+  const knob = document.getElementById('knob');
+  const vLeft = document.getElementById('bottom');   // original
+  const vRight = document.getElementById('top');     // enhanced
+
+  // Начальная позиция шторки (0..1)
+  let ratio = 0.5, dragging = false;
+
+  function applyRatio() {
+    const p = Math.max(0, Math.min(1, ratio)) * 100;
+    container.style.setProperty('--pos', p + '%');
+  }
+
+  function setByClientX(clientX) {
+    const rect = container.getBoundingClientRect();
+    ratio = (clientX - rect.left) / rect.width;
+    applyRatio();
+  }
+
+  // Перетаскивание шторки по горизонтали
+  const startDrag = (e) => {
+    dragging = true;
+    (e.type.startsWith('touch') ? e.touches : [e]).forEach(p => setByClientX(p.clientX));
+    e.preventDefault();
+  };
+  const moveDrag = (e) => {
+    if (!dragging) return;
+    if (e.type.startsWith('touch')) {
+      setByClientX(e.touches[0].clientX);
+    } else {
+      setByClientX(e.clientX);
+    }
+  };
+  const endDrag = () => { dragging = false; };
+
+  container.addEventListener('mousedown', startDrag);
+  container.addEventListener('mousemove', moveDrag);
+  window.addEventListener('mouseup', endDrag);
+
+  container.addEventListener('touchstart', startDrag, { passive: false });
+  container.addEventListener('touchmove', moveDrag, { passive: false });
+  window.addEventListener('touchend', endDrag);
+
+  // Автовоспроизведение (каждое видео независимо)
+  const tryPlay = v => v.play().catch(()=>{});
+  ['loadedmetadata','canplay'].forEach(ev => {
+    vLeft.addEventListener(ev, () => tryPlay(vLeft));
+    vRight.addEventListener(ev, () => tryPlay(vRight));
+  });
+  window.addEventListener('click', () => { tryPlay(vLeft); tryPlay(vRight); }, { once: true });
+
+  applyRatio();
+})();
+</script>
+</body>
+</html>
