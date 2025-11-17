@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Video Compare Curtain</title>
+<style>
+    :root { --bar-w: 3px; }
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body { margin: 0; background: #111; color: #eee; font-family: system-ui, sans-serif; }
+    .wrap { max-width: 1280px; margin: 16px auto; padding: 0 12px; display: flex; flex-direction: column; gap: 32px; }
+    h2 { margin: 0 0 12px; font-size: 18px; font-weight: 600; letter-spacing: 0.02em; }
+    .compare {
+      position: relative; width: 100%; aspect-ratio: 16 / 9;
+      background: #000; overflow: hidden; user-select: none; touch-action: none;
+      border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.4);
+      --pos: 50%;
+    }
+    .compare video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+      background: #000;
+    }
+    .compare .bottom { clip-path: polygon(0 0, var(--pos) 0, var(--pos) 100%, 0 100%); }
+    .compare .top    { clip-path: polygon(var(--pos) 0, 100% 0, 100% 100%, var(--pos) 100%); }
+    .compare .divider {
+      position: absolute; top: 0; bottom: 0; left: calc(var(--pos) - var(--bar-w) / 2);
+      width: var(--bar-w); background: rgba(255,255,255,.95); cursor: ew-resize;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 0 8px rgba(0,0,0,.6) inset;
+    }
+    .compare .knob {
+      position: absolute; top: 50%; left: var(--pos); transform: translate(-50%, -50%);
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(20,20,20,.85); border: 2px solid #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,.5);
+      pointer-events: none;
+    }
+    section { display: flex; flex-direction: column; gap: 12px; scroll-snap-align: start; scroll-snap-stop: always; min-height: 100vh; }
+    .caption { font-size: 14px; color: #ccc; line-height: 1.4; }
+  </style>
+
+</head>
+<body>
+  <div class="wrap">
+
+    <section>
+      <h2>example46</h2>
+      <div class="compare" data-name="example46">
+        <video class="bottom" src="upload/example46.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example46_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example45</h2>
+      <div class="compare" data-name="example45">
+        <video class="bottom" src="upload/example45.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example45_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>    
+
+    <section>
+      <h2>example44</h2>
+      <div class="compare" data-name="example44">
+        <video class="bottom" src="upload/example44.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example44_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example43</h2>
+      <div class="compare" data-name="example43">
+        <video class="bottom" src="upload/example43.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example43_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example42</h2>
+      <div class="compare" data-name="example42">
+        <video class="bottom" src="upload/example42.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example42_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>    
+
+    <section>
+      <h2>example41</h2>
+      <div class="compare" data-name="example41">
+        <video class="bottom" src="upload/example41.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example41_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example40</h2>
+      <div class="compare" data-name="example40">
+        <video class="bottom" src="upload/example40.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example40_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example39</h2>
+      <div class="compare" data-name="example39">
+        <video class="bottom" src="upload/example39.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example39_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example38</h2>
+      <div class="compare" data-name="example38">
+        <video class="bottom" src="upload/example38.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example38_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example37</h2>
+      <div class="compare" data-name="example37">
+        <video class="bottom" src="upload/example37.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example37_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example36 </h2>
+      <div class="compare" data-name="example36">
+        <video class="bottom" src="upload/example36.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example36_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+        <h2>example35</h2>  
+      <div class="compare" data-name="example35">
+        <video class="bottom" src="upload/example35.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example35_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>    
+
+    <section>
+      <h2>example34</h2>
+      <div class="compare" data-name="example34">
+        <video class="bottom" src="upload/example34.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example34_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example33</h2>
+      <div class="compare" data-name="example33">
+        <video class="bottom" src="upload/example33.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example33_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example32</h2>
+      <div class="compare" data-name="example32">
+        <video class="bottom" src="upload/example32.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example32_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example31</h2>
+      <div class="compare" data-name="example31">
+        <video class="bottom" src="upload/example31.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example31_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example30</h2>
+      <div class="compare" data-name="example30">
+        <video class="bottom" src="upload/example30.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example30_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example25</h2>
+      <div class="compare" data-name="example25">
+        <video class="bottom" src="upload/example25.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example25_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example24</h2>
+      <div class="compare" data-name="example24">
+        <video class="bottom" src="upload/example24.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example24_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example22</h2>
+      <div class="compare" data-name="example22">
+        <video class="bottom" src="upload/example22.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example22_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example21</h2>
+      <div class="compare" data-name="example21">
+        <video class="bottom" src="upload/example21.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example21_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+    
+    <section>
+      <h2>example20</h2>
+      <div class="compare" data-name="example20">
+        <video class="bottom" src="upload/example20.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example20_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example19</h2>
+      <div class="compare" data-name="example19">
+        <video class="bottom" src="upload/example19.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example19_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example18</h2>
+      <div class="compare" data-name="example18">
+        <video class="bottom" src="upload/example18.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example18_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example17</h2>
+      <div class="compare" data-name="example17">
+        <video class="bottom" src="upload/example17.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example17_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example16</h2>
+      <div class="compare" data-name="example16">
+        <video class="bottom" src="upload/example16.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example16_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example15</h2>
+      <div class="compare" data-name="example15">
+        <video class="bottom" src="upload/example15.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example15_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>    
+
+    <section>
+      <h2>example14</h2>
+      <div class="compare" data-name="example14">
+        <video class="bottom" src="upload/example14.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example14_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example13</h2>
+      <div class="compare" data-name="example13">
+        <video class="bottom" src="upload/example13.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example13_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example12</h2>
+      <div class="compare" data-name="example12">
+        <video class="bottom" src="upload/example12.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example12_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>    
+
+    <section>
+      <h2>example11</h2>
+      <div class="compare" data-name="example11">
+        <video class="bottom" src="upload/example11.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example11_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example10</h2>
+      <div class="compare" data-name="example10">
+        <video class="bottom" src="upload/example10.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example10_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example9</h2>
+      <div class="compare" data-name="example9">
+        <video class="bottom" src="upload/example9.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example9_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example8</h2>
+      <div class="compare" data-name="example8">
+        <video class="bottom" src="upload/example8.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example8_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example1_part1_res360_5sec</h2>
+      <div class="compare" data-name="example1_part1_res360_5sec">
+        <video class="bottom" src="upload/example1/example1_part1_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example1_part1_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part7_res360_5sec</h2>
+      <div class="compare" data-name="example2_part7_res360_5sec">
+        <video class="bottom" src="upload/example2/example2_part7_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part7_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part6_res360_5sec</h2>
+      <div class="compare" data-name="example2_part6_res360_5sec">
+        <video class="bottom" src="upload/example2/example2_part6_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part6_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part5_res360_5sec</h2>
+      <div class="compare" data-name="example2_part5_res360_5sec">
+        <video class="bottom" src="upload/example2/example2_part5_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part5_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part4_res360_5sec</h2>
+      <div class="compare" data-name="example2_part4_res360_5sec">
+        <video class="bottom" src="upload/example2/example2_part4_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part4_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part3_res360_5sec</h2>
+      <div class="compare" data-name="example2_part3_res360_5sec">
+        <video class="bottom" src="upload/example2/example2_part3_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part3_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part2_res360_5sec</h2>
+      <div class="compare" data-name="example2_part2_res360_5sec">
+        <video class="bottom" src="upload/example2/example2_part2_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part2_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example2_part1_res360_10sec</h2>
+      <div class="compare" data-name="example2_part1_res360_10sec">
+        <video class="bottom" src="upload/example2/example2_part1_res360_10sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example2_part1_res360_10sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example3_part8_res360_5sec</h2>
+      <div class="compare" data-name="example3_part8_res360_5sec">
+        <video class="bottom" src="upload/example3/example3_part8_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example3_part8_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example3_part7_res360_5sec</h2>
+      <div class="compare" data-name="example3_part7_res360_5sec">
+        <video class="bottom" src="upload/example3/example3_part7_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example3_part7_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example3_part5_res360_5sec</h2>
+      <div class="compare" data-name="example3_part5_res360_5sec">
+        <video class="bottom" src="upload/example3/example3_part5_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example3_part5_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example3_part4_res360_5sec</h2>
+      <div class="compare" data-name="example3_part4_res360_5sec">
+        <video class="bottom" src="upload/example3/example3_part4_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example3_part4_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example3_part3_res360_5sec</h2>
+      <div class="compare" data-name="example3_part3_res360_5sec">
+        <video class="bottom" src="upload/example3/example3_part3_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example3_part3_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>example3_part2_res360_5sec</h2>
+      <div class="compare" data-name="example3_part2_res360_5sec">
+        <video class="bottom" src="upload/example3/example3_part2_res360_5sec.mp4" muted loop playsinline></video>
+        <video class="top" src="results/FlashVSR_v1.1_Full_example3_part2_res360_5sec_seed0.mp4" muted loop playsinline></video>
+        <div class="divider"></div>
+        <div class="knob" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section>
+        <h2>example4_part11_res360_5sec</h2>
+        <div class="compare" data-name="example4_part11_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part11_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part11_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part10_res360_5sec</h2>
+        <div class="compare" data-name="example4_part10_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part10_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part10_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part9_res360_5sec</h2>
+        <div class="compare" data-name="example4_part9_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part9_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part9_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part8_res360_5sec</h2>
+        <div class="compare" data-name="example4_part8_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part8_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part8_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part7_res360_5sec</h2>
+        <div class="compare" data-name="example4_part7_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part7_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part7_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part5_res360_5sec</h2>
+        <div class="compare" data-name="example4_part5_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part5_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part5_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part3_res360_5sec</h2>
+        <div class="compare" data-name="example4_part3_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part3_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part3_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+  
+      <section>
+        <h2>example4_part1_res360_5sec</h2>
+        <div class="compare" data-name="example4_part1_res360_5sec">
+          <video class="bottom" src="upload/example4/example4_part1_res360_5sec.mp4" muted loop playsinline></video>
+          <video class="top" src="results/FlashVSR_v1.1_Full_example4_part1_res360_5sec_seed0.mp4" muted loop playsinline></video>
+          <div class="divider"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+      </section>
+
+  </div>
+
+  <script>
+    (() => {
+      const players = Array.from(document.querySelectorAll('.compare')).map(container => {
+        const divider = container.querySelector('.divider');
+        const vLeft = container.querySelector('.bottom');
+        const vRight = container.querySelector('.top');
+        const videos = [vLeft, vRight];
+    
+        // запоминаем исходные источники и очищаем теги
+        videos.forEach(video => {
+          video.dataset.src = video.getAttribute('src');
+          video.removeAttribute('src');
+          video.preload = 'none';
+        });
+    
+        let ratio = 0.5;
+        let dragging = false;
+    
+        const applyRatio = () => {
+          const p = Math.max(0, Math.min(1, ratio)) * 100;
+          container.style.setProperty('--pos', p + '%');
+        };
+    
+        const setByClientX = clientX => {
+          const rect = container.getBoundingClientRect();
+          ratio = (clientX - rect.left) / rect.width;
+          applyRatio();
+        };
+    
+        const startDrag = e => {
+          dragging = true;
+          if (e.type.startsWith('touch')) {
+            setByClientX(e.touches[0].clientX);
+          } else {
+            setByClientX(e.clientX);
+          }
+          e.preventDefault();
+        };
+    
+        const moveDrag = e => {
+          if (!dragging) return;
+          if (e.type.startsWith('touch')) {
+            setByClientX(e.touches[0].clientX);
+          } else {
+            setByClientX(e.clientX);
+          }
+        };
+    
+        const endDrag = () => { dragging = false; };
+    
+        container.addEventListener('mousedown', startDrag);
+        container.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+    
+        container.addEventListener('touchstart', startDrag, { passive: false });
+        container.addEventListener('touchmove', moveDrag, { passive: false });
+        window.addEventListener('touchend', endDrag);
+    
+        applyRatio();
+    
+        return { container, videos, active: false };
+      });
+    
+      const tryPlay = video => video.play().catch(() => {});
+      let current = null;
+    
+      const activate = player => {
+        if (player.active) return;
+        player.videos.forEach(video => {
+          const src = video.dataset.src;
+          if (!src) return;
+          video.src = src;
+          video.load();
+          tryPlay(video);
+        });
+        player.active = true;
+      };
+    
+      const deactivate = player => {
+        if (!player.active) return;
+        player.videos.forEach(video => {
+          video.pause();
+          video.removeAttribute('src');
+          video.load(); // сбрасывает буфер, освобождает память
+        });
+        player.active = false;
+      };
+    
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const player = players.find(p => p.container === entry.target);
+          if (!player) return;
+    
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.65) {
+            if (current && current !== player) deactivate(current);
+            activate(player);
+            current = player;
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.35) {
+            if (player === current) current = null;
+            deactivate(player);
+          }
+        });
+      }, { threshold: [0, 0.35, 0.65, 1] });
+    
+      players.forEach(player => observer.observe(player.container));
+    })();
+</script>
+</body>
+</html>
